@@ -30,7 +30,9 @@ public class PostController
     }
 
     @PostMapping("/postJob")
-    public void postJob(@RequestBody Post post) {repo.save(post);
+    public void postJob(@RequestBody Post post) {
+        System.out.println(post);
+        repo.save(post);
     }
 
 
