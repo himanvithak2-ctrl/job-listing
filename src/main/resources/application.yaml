@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: JobListing
+  data:
+    mongodb:
+      uri: mongodb+srv://root:root@candy.sws2pm7.mongodb.net/?appName=candy
+      database: candy
+
+
