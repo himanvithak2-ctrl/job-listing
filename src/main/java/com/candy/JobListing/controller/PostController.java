@@ -2,6 +2,7 @@ package com.candy.JobListing.controller;
 
 import com.candy.JobListing.model.Post;
 import com.candy.JobListing.repo.PostRepository;
+import com.candy.JobListing.repo.SearchRepository;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,11 +13,15 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @Tag(name = "Job Listing", description = "APIs for listing Jobs")
 public class PostController
 {
     @Autowired
     PostRepository repo;
+
+    @Autowired
+    SearchRepository searchRepo;
 
     @RequestMapping(value="/")
     @Hidden
@@ -34,6 +39,9 @@ public class PostController
         return repo.save(post);
     }
 
-
-
+    @GetMapping("/search/{text}")
+    public List<Post> search(@PathVariable String text)
+    {
+        return searchRepo.findByText(text);
+    }
 }
